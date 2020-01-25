@@ -27,7 +27,7 @@ class FilesController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'file' => ['required', 'mimes:csv,txt', 'max:2048'],
+            'file' => ['required', 'mimes:txt,csv', 'max:2048'],
         ]);
 
         // dd($request->file);

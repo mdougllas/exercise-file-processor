@@ -30,11 +30,10 @@ class FilesController extends Controller
             'file' => ['required', 'mimes:csv,txt', 'max:2048'],
         ]);
 
-        dd($request->file);
-
-        // $path = Storage::disk('local')->put('file.csv');
-        // $path = Storage::putFile('photos', new File('/storage/app/uploads'));
-        // dd($path);
+        // dd($request->file);
+        $path = $request->file->store('uploads');
+        // $path = Storage::putFile('uploads');
+        dd($path);
     }
 
     /**

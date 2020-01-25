@@ -4,6 +4,9 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
+//Inserting monetary output to blade templates
+use Illuminate\Support\Facades\Blade;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -23,6 +26,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        //Inserting monetary output to blade templates
+        Blade::directive('money', function ($amount) {
+            return "<?php echo '$' . number_format($amount, 2); ?>";
+        });
     }
 }

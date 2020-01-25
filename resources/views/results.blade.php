@@ -11,7 +11,28 @@
                         {{ config('app.name', 'Change app name on .env file') }}
                     </h1>
                     <h2 class="text-2xl text-gray-500 text-center mb-8">These are the results for your file.</h2>
-                    {{ $data->sku }}
+                    <table class="table-auto">
+                        <thead>
+                            <tr>
+                                <th class="px-4 py-2">SKU</th>
+                                <th class="px-4 py-2">Quantity</th>
+                                <th class="px-4 py-2">Price</th>
+                                <th class="px-4 py-2">Cost</th>
+                            </tr>
+                        </thead>
+
+                        @foreach ($data as $item)
+                            <tbody>
+                                <tr>
+                                    <td class="border px-4 py-2">{{ $item->sku }}</td>
+                                    <td class="border px-4 py-2  text-center">{{ $item->qty }}</td>
+                                    <td class="border px-4 py-2  text-center">@money($item->price)</td>
+                                    <td class="border px-4 py-2  text-center">@money($item->cost)</td>
+                                </tr>
+                            </tbody>
+                            @endforeach
+
+                          </table>
                 </div>
             </div>
         </div>

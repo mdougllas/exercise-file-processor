@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Table;
 use Illuminate\Http\Request;
 use App\Imports\TablesImport;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 
 class TablesController extends Controller
@@ -25,22 +26,19 @@ class TablesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Table $table)
     {
         $request->validate([
             'file' => ['required', 'mimes:txt,csv', 'max:2048'],
         ]);
 
-        $path = $request->file->store('uploads');
-        Excel::import(new TablesImport, $path);
+        // $path = $request->file->store('uploads');
+        Excel::import(new TablesImport, $request->file);
 
-        $data = Table::get()->last();
-
-        // $doido = compact('data');
-        // dd($doido);
+        $data = $table->all();
+        $table->truncate();
 
         return view('results', compact('data'));
-
     }
 
 

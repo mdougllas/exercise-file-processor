@@ -16,8 +16,8 @@ class CreateTablesTable extends Migration
         Schema::create('tables', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->text('sku');
-            $table->integer('price');
             $table->integer('qty');
+            $table->integer('price');
             $table->integer('cost');
             $table->timestamps();
         });

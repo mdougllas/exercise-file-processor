@@ -3,22 +3,22 @@
 namespace App\Imports;
 
 use App\Table;
-use Maatwebsite\Excel\Concerns\ToModel;
+use Illuminate\Support\Collection;
+use Maatwebsite\Excel\Concerns\ToCollection;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class TablesImport implements ToModel
+class TablesImport implements ToCollection, WithHeadingRow
 {
-    /**
-    * @param array $row
-    *
-    * @return \Illuminate\Database\Eloquent\Model|null
-    */
-    public function model(array $row)
+    public function collection(Collection $rows)
     {
-        return new Table([
-            'sku'   => $row['sku'],
-            'price' => $row['price'],
-            'qty'   => $row['qty'],
-            'cost'  => $row['cost'],
-        ]);
+        foreach ($rows as $row)
+        {
+            Table::create([
+                'sku'   => $row['sku'],
+                'price' => $row['price'],
+                'qty'   => $row['qty'],
+                'cost'  => $row['cost'],
+            ]);
+        }
     }
 }

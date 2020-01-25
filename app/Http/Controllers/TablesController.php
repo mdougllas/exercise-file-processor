@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Table;
 use Illuminate\Http\Request;
 use App\Imports\TablesImport;
 use Maatwebsite\Excel\Facades\Excel;
 
-class FilesController extends Controller
+class TablesController extends Controller
 {
     /**
      * Show the form for creating a new resource.
@@ -31,32 +32,16 @@ class FilesController extends Controller
         ]);
 
         $path = $request->file->store('uploads');
-        $data = Excel::import(new TablesImport, $path);
+        Excel::import(new TablesImport, $path);
 
-        dd($data);
+        $data = Table::get()->last();
+
+        // $doido = compact('data');
+        // dd($doido);
+
+        return view('results', compact('data'));
 
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

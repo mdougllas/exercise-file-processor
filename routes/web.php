@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/', 'FilesController@create');
+Route::get('/', 'TablesController@create');
 
-Route::post('results', 'FilesController@store')->name('results');
+Route::post('results', 'TablesController@store')->name('results');

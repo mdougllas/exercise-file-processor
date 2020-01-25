@@ -15,10 +15,10 @@ class TablesImport implements ToModel
     public function model(array $row)
     {
         return new Table([
-            'sku'     => $row[0],
-            'price'    => $row[1],
-            'qty' => $row[2],
-            'cost' => $row[3],
+            'sku'   => $row['sku'],
+            'price' => $row['price'],
+            'qty'   => $row['qty'],
+            'cost'  => $row['cost'],
         ]);
     }
 }

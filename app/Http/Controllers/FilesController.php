@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\File;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use App\Imports\TablesImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class FilesController extends Controller
 {
@@ -30,10 +30,11 @@ class FilesController extends Controller
             'file' => ['required', 'mimes:txt,csv', 'max:2048'],
         ]);
 
-        // dd($request->file);
         $path = $request->file->store('uploads');
-        // $path = Storage::putFile('uploads');
-        dd($path);
+        $data = Excel::import(new TablesImport, $path);
+
+        dd($data);
+
     }
 
     /**

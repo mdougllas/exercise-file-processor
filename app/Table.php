@@ -57,14 +57,15 @@ class Table extends Model
      * @param string - Name of the specific data for fetching in the array
      * @return array
      */
-    public function totalProfit($collection, $price, $cost)
+    public function totalProfit($collection, $price, $cost, $qty)
     {
         $partial = [];
 
         foreach ($collection as $item)
         {
-            array_push($partial, $item->$price - $item->$cost);
+            array_push($partial, ($item->$price - $item->$cost) * $item->$qty);
         }
+
         return $partial;
     }
 }

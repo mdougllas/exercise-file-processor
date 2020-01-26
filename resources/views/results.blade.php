@@ -23,6 +23,7 @@
                     </thead>
 
                     {{-- The @money helper was inserted on Blade Template for outputing monetary values. See app/Providers/AppServiceProvider.php for more info --}}
+                    {{-- The @convert helper was inserted on Blade Template for converting USD to CAD. See app/Providers/AppServiceProvider.php for more info --}}
                     @foreach ($data['data'] as $item)
                         <tbody>
                             <tr>
@@ -39,13 +40,13 @@
 
                     <tfoot class="text-sm">
                         <tr>
-                            <th class="px-4 py-2">Total Products: <span>{{ count($sku) }} products</span></th>
-                            <th class="px-4 py-2">Total Quantity: <span>{{ $qty->sum() }} units</span></th>
-                            <th class="px-4 py-2">Average Price: <span>@money($price->avg())</span></th>
-                            <th class="px-4 py-2">Average Cost: <span>@money($cost->avg())</span></th>
-                            <th class="px-4 py-2">Average Profit Margin: <span class=" {{ $profitMargin->avg() < 0 ? 'text-red-500' : 'text-green-500' }}">@money( $profitMargin->avg() )</span></th>
-                            <th class="px-4 py-2">Total Profit (USD): <span class=" {{ $profitMargin->avg() < 0 ? 'text-red-500' : 'text-green-500' }}">@money( $totalProfit->sum() )</span></th>
-                        <th class="px-4 py-2">Total Profit (CAD): <span class=" {{ $profitMargin->avg() < 0 ? 'text-red-500' : 'text-green-500' }}">@convert( $totalProfit->sum() )</span></th>
+                            <th class="px-4 py-2 text-gray-500">Total Products: <span class="text-black">{{ count($sku) }} products</span></th>
+                            <th class="px-4 py-2 text-gray-500">Total Quantity: <span  class="text-black">{{ $qty->sum() }} units</span></th>
+                            <th class="px-4 py-2 text-gray-500">Average Price: <span  class="text-black">@money($price->avg())</span></th>
+                            <th class="px-4 py-2 text-gray-500">Average Cost: <span  class="text-black">@money($cost->avg())</span></th>
+                            <th class="px-4 py-2 text-gray-500">Average Profit Margin: <span class=" {{ $profitMargin->avg() < 0 ? 'text-red-500' : 'text-green-500' }}">@money( $profitMargin->avg() )</span></th>
+                            <th class="px-4 py-2 text-gray-500">Total Profit (USD): <span class=" {{ $profitMargin->avg() < 0 ? 'text-red-500' : 'text-green-500' }}">@money( $totalProfit->sum() )</span></th>
+                        <th class="px-4 py-2 text-gray-500">Total Profit (CAD): <span class=" {{ $profitMargin->avg() < 0 ? 'text-red-500' : 'text-green-500' }}">@convert( $totalProfit->sum() )</span></th>
                         </tr>
                     </tfoot>
                 </table>

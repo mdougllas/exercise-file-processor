@@ -49,6 +49,10 @@ class TablesController extends Controller
         $qty = collect($table->splitData($data, 'qty'));
         $cost = collect($table->splitData($data, 'cost'));
         $price = collect($table->splitData($data, 'price'));
+
+        /**
+         * avgProfitMargin and totalProfit functions are located in app/Table.php
+        */
         $profitMargin = collect($table->avgProfitMargin($data, 'price', 'cost'));
         $totalProfit = collect($table->totalProfit($data, 'price', 'cost', 'qty'));
 

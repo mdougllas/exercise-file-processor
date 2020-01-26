@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'Your Results')
+@section('title', 'Oooops!')
 
 @section('content')
     <div class="flex flex-col">

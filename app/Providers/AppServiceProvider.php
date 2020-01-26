@@ -31,9 +31,10 @@ class AppServiceProvider extends ServiceProvider
             return "<?php echo '$' . number_format($amount, 2); ?>";
         });
 
-        //Inserting current conversion output to blade templates
+        //Inserting currency conversion (USD to CAD) output to blade templates
+        //Configure your API key in the .env file accordingly
         Blade::directive('convert', function($amount){
-            $apiKey = 'bea54b2893b0db9b0a2c';
+            $apiKey = env('CURR_CONVERSION_API', false);
             $query =  "USD_CAD";
 
             $json = file_get_contents("https://free.currconv.com/api/v7/convert?q={$query}&compact=ultra&apiKey={$apiKey}");

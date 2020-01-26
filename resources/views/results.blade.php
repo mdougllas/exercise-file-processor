@@ -29,8 +29,8 @@
                             <tr>
                                 <td class="border px-4 py-2">{{ $item->sku }}</td>
                                 <td class="border px-4 py-2  text-center">{{ $item->qty }}</td>
-                                <td class="border px-4 py-2  text-center">@money($item->price)</td>
-                                <td class="border px-4 py-2  text-center">@money($item->cost)</td>
+                                <td class="border px-4 py-2  text-center">@money( $item->price )</td>
+                                <td class="border px-4 py-2  text-center">@money( $item->cost )</td>
                                 <td class="border px-4 py-2  text-center {{ $item->price - $item->cost < 0 ? 'text-red-500' : 'text-green-500' }}">@money( $item->price - $item->cost )</td>
                                 <td class="border px-4 py-2  text-center {{ ($item->price - $item->cost) * $item->qty < 0 ? 'text-red-500' : 'text-green-500' }}">@money( ($item->price - $item->cost) * $item->qty )</td>
                                 <td class="border px-4 py-2  text-center {{ ($item->price - $item->cost) * $item->qty < 0 ? 'text-red-500' : 'text-green-500' }}">@convert( ($item->price - $item->cost) * $item->qty )</td>
@@ -40,10 +40,10 @@
 
                     <tfoot class="text-sm">
                         <tr>
-                            <th class="px-4 py-2 text-gray-500">Total Products: <span class="text-black">{{ count($sku) }} products</span></th>
+                            <th class="px-4 py-2 text-gray-500">Total Products: <span class="text-black">{{ count( $sku ) }} products</span></th>
                             <th class="px-4 py-2 text-gray-500">Total Quantity: <span  class="text-black">{{ $qty->sum() }} units</span></th>
-                            <th class="px-4 py-2 text-gray-500">Average Price: <span  class="text-black">@money($price->avg())</span></th>
-                            <th class="px-4 py-2 text-gray-500">Average Cost: <span  class="text-black">@money($cost->avg())</span></th>
+                            <th class="px-4 py-2 text-gray-500">Average Price: <span  class="text-black">@money( $price->avg() )</span></th>
+                            <th class="px-4 py-2 text-gray-500">Average Cost: <span  class="text-black">@money( $cost->avg() )</span></th>
                             <th class="px-4 py-2 text-gray-500">Average Profit Margin: <span class=" {{ $profitMargin->avg() < 0 ? 'text-red-500' : 'text-green-500' }}">@money( $profitMargin->avg() )</span></th>
                             <th class="px-4 py-2 text-gray-500">Total Profit (USD): <span class=" {{ $profitMargin->avg() < 0 ? 'text-red-500' : 'text-green-500' }}">@money( $totalProfit->sum() )</span></th>
                         <th class="px-4 py-2 text-gray-500">Total Profit (CAD): <span class=" {{ $profitMargin->avg() < 0 ? 'text-red-500' : 'text-green-500' }}">@convert( $totalProfit->sum() )</span></th>

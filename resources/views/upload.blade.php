@@ -7,11 +7,9 @@
         <div class="min-h-screen flex items-center justify-center">
             <div class="flex flex-col justify-around h-full">
                 <div>
-                    <h1 class="text-gray-600 text-center font-light tracking-wider text-5xl mb-6">
-                        {{ config('app.name', 'Change app name on .env file') }}
-                    </h1>
+                    <h1 class="text-gray-600 text-center font-light tracking-wider text-5xl mb-6">File Processor</h1>
                     <h2 class="text-2xl text-gray-500 text-center mb-8">Upload your CSV file.</h2>
-                <form class="flex flex-col items-center" action="{{ route('results') }}" method="POST" enctype="multipart/form-data">
+                <form class="flex flex-col items-center" action="{{ route( 'results' ) }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         <input type="file" name="file" accept="text/csv" class="w-64 mb-8 flex flex-col items-center px-4 py-6 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue hover:text-white hover:bg-green-500">
@@ -22,10 +20,10 @@
                             </svg>
                         </button>
 
-                        @if ($errors->any())
+                        @if ( $errors->any() )
                             <div class="mt-8 text-red-500 font-bold">
                                 <ul>
-                                    @foreach ($errors->all() as $error)
+                                    @foreach ( $errors->all() as $error )
                                         <li>{{ $error }}</li>
                                     @endforeach
                                 </ul>
@@ -33,8 +31,6 @@
                         @endif
 
                     </form>
-
-
                 </div>
             </div>
         </div>

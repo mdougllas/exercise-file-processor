@@ -39,7 +39,7 @@ class TablesController extends Controller
         Excel::import(new TablesImport, $request->file);
 
         $data = $table->all();
-        // $table->truncate();
+        $table->truncate();
 
         /**
          * SplitData function splits the requested data from the Collection into an array

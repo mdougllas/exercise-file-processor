@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Table;
 use Illuminate\Http\Request;
 use App\Imports\TablesImport;
-use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 
 class TablesController extends Controller
@@ -32,14 +31,44 @@ class TablesController extends Controller
             'file' => ['required', 'mimes:txt,csv', 'max:2048'],
         ]);
 
-        // $path = $request->file->store('uploads');
+        $hasContent = $this->checkCVS($request);
+
+        if(!$hasContent) return view('fail');
+
         Excel::import(new TablesImport, $request->file);
 
         $data = $table->all();
         $table->truncate();
 
-        return view('results', compact('data'));
+        /**
+         * SplitData function splits the requested data from the Collection into an array
+         * See app/Table.php for more information
+        */
+        $sku = collect($table->splitData($data, 'sku'));
+        $qty = collect($table->splitData($data, 'qty'));
+        $cost = collect($table->splitData($data, 'cost'));
+        $price = collect($table->splitData($data, 'price'));
+        $profitMargin = collect($table->avgProfitMargin($data, 'price', 'cost'));
+
+        return view('results', ['data' => compact('data'), 'sku' => $sku, 'qty' => $qty, 'cost' => $cost, 'price' => $price, 'profitMargin' => $profitMargin ]);
     }
 
+    protected function checkCVS(Request $request)
+    {
+        $file = fopen($request->file, "r");
+        $header = true;
+        $arr = [];
+
+        while ($csvLine = fgetcsv($file, 1000, ','))
+        {
+            if($header){
+                $header = false;
+            } else {
+                array_push($arr, $csvLine);
+            }
+        }
+
+        return $arr[0][0] !== "" ? true : false;
+    }
 
 }

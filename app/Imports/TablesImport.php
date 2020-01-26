@@ -13,12 +13,11 @@ class TablesImport implements ToCollection, WithHeadingRow
     {
         foreach ($rows as $row)
         {
-            // dd($row);
             Table::create([
-                    'sku'   => $row['sku'],
-                    'qty'   => $row['qty'],
-                    'price' => $row['price'],
-                    'cost'  => $row['cost'],
+                'sku'   => $row['sku'],
+                'qty'   => $row['qty'],
+                'price' => $row['price'],
+                'cost'  => $row['cost']
             ]);
         }
     }

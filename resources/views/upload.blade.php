@@ -21,6 +21,7 @@
                               <path fill="currentcolor" d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
                             </svg>
                         </button>
+
                         @if ($errors->any())
                             <div class="mt-8 text-red-500 font-bold">
                                 <ul>
@@ -30,6 +31,7 @@
                                 </ul>
                             </div>
                         @endif
+
                     </form>
 
 

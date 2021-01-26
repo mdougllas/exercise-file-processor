@@ -51,7 +51,7 @@ class Table extends Model
     }
 
     /**
-     * Calculate the profit margin for all products in a given Collection
+     * Calculate the total profit for all products in a given Collection
      *
      * @param collection - any Eloquent Collection
      * @param string - Name of the specific data for fetching in the array
